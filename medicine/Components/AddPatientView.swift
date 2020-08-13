@@ -27,12 +27,11 @@ struct AddPatientView: View {
             Section(header: Text("Patient Info")){
                 TextField("Patient Name" , text: $patientName)
                 DatePicker(selection: $patientDob, in: ...Date(), displayedComponents: .date) {
-                    Text("Select a date")
+                    Text("Date Of Birth")
                         .onAppear {
                             self.endEditing()
-                    }
+                        }
                     .onTapGesture{self.endEditing()}
-                    
                 }
             }
             

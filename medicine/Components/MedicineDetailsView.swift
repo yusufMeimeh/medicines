@@ -14,7 +14,7 @@ struct MedicineDetailsView: View {
     var medicine : Medicine
     var body: some View {
         List{
-            Section(header:Text("Medicine Ifno")){
+            Section(header:Text("Medicine Info")){
                 HStack(alignment : .top){
                     Text("Name:").bold()
                     Text(medicine.name)

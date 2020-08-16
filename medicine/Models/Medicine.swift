@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct Medicine: Codable, Equatable, Identifiable {
+struct Medicine: Codable, Equatable, Identifiable , Hashable {
     var id: UUID
     var name: String
     var purposes: [String]

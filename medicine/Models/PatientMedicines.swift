@@ -10,8 +10,8 @@ import SwiftUI
 
 struct PatientMedicines: Codable, Equatable, Identifiable {
     var id: UUID
-    var patientID: String
-    var medicines: [String]
+    var patientID: UUID
+    var medicines: [UUID]
     var dosePeriod: [String]
     var times: Int
     var totalTablets: Int

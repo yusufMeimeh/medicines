@@ -48,6 +48,8 @@ func generateMedicineExample() -> Medicine{
     }
    return Medicine(id: UUID(), name: faker.commerce.productName(), purposes: purposes, description: faker.lorem.sentences())
 }
+
+
 #endif
 
 

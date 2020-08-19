@@ -15,11 +15,16 @@ struct AddMedicineToPatientView: View {
     @State private var selectedMedcineMealType = 0
     @State private var selectedMedcinePeriodType = 0
     @State private var times = ""
+    @State private var doseStrength = ""
     @State private var showingAlert = false
-    
+    @State private var expireDob = Date()
+    @State private var count = 1
+    @ObservedObject var medicineTimes = Time()
+
     static let medicineTypes = ["Liquid" , "Tablets" , "Capsules" , "Suppositories" , "Drops" , "Inhalers"]
     static let medicineTimeTypes = ["Before Meal" , "After Meal"]
-    static let medicineTimePeriods = ["Daily" , "Weekly" , "Monthly" , "Yearly"]
+    static let medicineTimePeriods = ["Everyday" , "Select Days" , "As Needed"]
+    
     var timesLabel : String{
         return ("Times/\(Self.medicineTimePeriods[selectedMedcinePeriodType])")
     }
@@ -29,14 +34,7 @@ struct AddMedicineToPatientView: View {
             m.name == self.selectedMedcine
         }
     }
- 
-    //    Liquid سائل
-    //    Tablets أقراص
-    //    Capsules كبسولات
-    //    Suppositories تحاميل
-    //    Drops قطرات
-    //    Inhalers دواء استنشاقي
-    //    Injections الحقن
+    
     var body: some View {
         Form{
             Section(header : Text("Medicines")){
@@ -47,36 +45,63 @@ struct AddMedicineToPatientView: View {
                 }
             }
             
-            Section(header : Text("Medicine Type")){
-                Picker("Select Medicine Type" , selection: $selectedMedcineType){
+            Section(header : Text("Dose Form")){
+                Picker("Select the dose form" , selection: $selectedMedcineType){
                     ForEach( 0 ..< Self.medicineTypes.count ){
                         Text(Self.medicineTypes[$0])
                         
                     }
                 }
             }
-            
-            Section(header : Text("Medicine Meal Type")){
-                Picker("Select Meal Type" , selection: $selectedMedcineMealType){
-                    ForEach( 0 ..< Self.medicineTimeTypes.count){
-                        Text(Self.medicineTimeTypes[$0])
-                        
-                    }
+            Section(header : Text("Dose Strength")){
+                HStack(alignment: .center, spacing: 8){
+                    TextField("Dose Strength" , text: $doseStrength).keyboardType(.numberPad)
+                    Text("mg")
                 }
             }
-            Section(header : Text("Medicine Period Type")){
-                Picker("Select Period Type" , selection: $selectedMedcinePeriodType){
+            
+            Section(header : Text("Expire Date")){
+                DatePicker(selection: $expireDob, in: Date()..., displayedComponents: .date) {
+                    Text("Expire Date")
+                        .onAppear {
+                            self.endEditing()
+                    }
+                    .onTapGesture{self.endEditing()}
+                }
+            }
+            //
+            //            Section(header : Text("Medicine Meal Type")){
+            //                Picker("Select Meal Type" , selection: $selectedMedcineMealType){
+            //                    ForEach( 0 ..< Self.medicineTimeTypes.count){
+            //                        Text(Self.medicineTimeTypes[$0])
+            //
+            //                    }
+            //                }
+            //            }
+            
+            Section(header : Text("Schedul")){
+                Picker("Schedul" , selection: $selectedMedcinePeriodType.animation()){
                     ForEach( 0 ..< Self.medicineTimePeriods.count){
                         Text(Self.medicineTimePeriods[$0])
                     }
                 }.pickerStyle(SegmentedPickerStyle())
-                if self.selectedMedcinePeriodType >= 0{
-                    Section(header : Text(timesLabel)){
-                        TextField(timesLabel , text: $times).keyboardType(.numberPad)
+            }
+            
+            if self.selectedMedcinePeriodType != 2{
+                Section(header:
+                    HStack{
+                        Text("Times")
+                        Spacer()
+                        Button(action: self.addNewTimeAction){
+                            Image(systemName: "plus")
+                        }
+                    })
+                {
+                    ForEach(medicineTimes.items){ item in
+                        TimeRow(pm: item)
                     }
                 }
             }
-            
         }
         .navigationBarTitle("Assign Medicine to Patient" , displayMode: .inline)
         .alert(isPresented: $showingAlert) {
@@ -96,16 +121,24 @@ struct AddMedicineToPatientView: View {
     }
     
     func savePatientMedicine() {
-        if let medicine = self.selectedMedicineObject , !times.isEmpty{
+        if let medicine = self.selectedMedicineObject{
             print(medicine)
             print(Self.medicineTypes[selectedMedcineType])
+            print(self.doseStrength)
             print(Self.medicineTimeTypes[selectedMedcineMealType])
             print(Self.medicineTimePeriods[selectedMedcinePeriodType])
-            print(times)
+            print()
+            medicineTimes.items.forEach { (m) in
+                print(m.time)
+                print(m.count)
+            }
             
         }else{
             self.showingAlert.toggle()
         }
+    }
+    func addNewTimeAction() {
+        medicineTimes.add(item: PatientMedicinesTime(time: Date(), count: 1))
     }
 }
 
@@ -115,3 +148,21 @@ struct AddMedicineToPatientView_Previews: PreviewProvider {
         AddMedicineToPatientView().environmentObject(appData)
     }
 }
+
+
+//    Liquid سائل
+//    Tablets أقراص
+//    Capsules كبسولات
+//    Suppositories تحاميل
+//    Drops قطرات
+//    Inhalers دواء استنشاقي
+//    Injections الحقن
+
+
+// select medicine
+// select dose form
+// select dose strength
+// enter expire date
+// schedul [ervery day > [add time > home many] ,
+// spesifice days > [add time > home many]
+// as needed > without time]

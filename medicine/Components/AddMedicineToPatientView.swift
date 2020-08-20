@@ -20,9 +20,12 @@ struct AddMedicineToPatientView: View {
     @State private var expireDob = Date()
     @State private var count = 1
     @ObservedObject var medicineTimes = Time()
-
+    @ObservedObject var days = Day()
+    
     static let medicineTypes = ["Liquid" , "Tablets" , "Capsules" , "Suppositories" , "Drops" , "Inhalers"]
+    
     static let medicineTimeTypes = ["Before Meal" , "After Meal"]
+    
     static let medicineTimePeriods = ["Everyday" , "Select Days" , "As Needed"]
     
     var timesLabel : String{
@@ -69,15 +72,15 @@ struct AddMedicineToPatientView: View {
                     .onTapGesture{self.endEditing()}
                 }
             }
-            //
-            //            Section(header : Text("Medicine Meal Type")){
-            //                Picker("Select Meal Type" , selection: $selectedMedcineMealType){
-            //                    ForEach( 0 ..< Self.medicineTimeTypes.count){
-            //                        Text(Self.medicineTimeTypes[$0])
-            //
-            //                    }
-            //                }
-            //            }
+            
+                        Section(header : Text("Medicine Meal Type")){
+                            Picker("Select Meal Type" , selection: $selectedMedcineMealType){
+                                ForEach( 0 ..< Self.medicineTimeTypes.count){
+                                    Text(Self.medicineTimeTypes[$0])
+            
+                                }
+                            }
+                        }
             
             Section(header : Text("Schedul")){
                 Picker("Schedul" , selection: $selectedMedcinePeriodType.animation()){
@@ -88,6 +91,12 @@ struct AddMedicineToPatientView: View {
             }
             
             if self.selectedMedcinePeriodType != 2{
+                if self.selectedMedcinePeriodType == 1{
+                    Section(header : Text("SelectDays")){
+                        MultipleSelectionList(days: days)
+                        
+                    }
+                }
                 Section(header:
                     HStack{
                         Text("Times")
@@ -127,10 +136,16 @@ struct AddMedicineToPatientView: View {
             print(self.doseStrength)
             print(Self.medicineTimeTypes[selectedMedcineMealType])
             print(Self.medicineTimePeriods[selectedMedcinePeriodType])
-            print()
+            
             medicineTimes.items.forEach { (m) in
                 print(m.time)
                 print(m.count)
+            }
+            
+            days.items.filter({ (q) -> Bool in
+                q.selected
+            }).forEach { (m) in
+                print(m.name)
             }
             
         }else{
@@ -166,3 +181,27 @@ struct AddMedicineToPatientView_Previews: PreviewProvider {
 // schedul [ervery day > [add time > home many] ,
 // spesifice days > [add time > home many]
 // as needed > without time]
+
+struct MultipleSelectionList: View {
+    @ObservedObject var days : Day
+    
+    var body: some View {
+        List {
+            ForEach(self.days.items) { item in
+                MultipleSelectionRow(object : item)
+            }
+        }
+    }
+}
+
+struct MultipleSelectionRow: View {
+    @ObservedObject var object : WeekDay
+    
+    var body: some View {
+        
+        Toggle(isOn : $object.selected.animation()){
+            Text(object.name)
+        }
+    }
+
+}

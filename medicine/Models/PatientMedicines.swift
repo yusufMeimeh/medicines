@@ -19,6 +19,7 @@ struct PatientMedicines: Codable, Equatable, Identifiable {
 }
 
 class PatientMedicinesTime: Identifiable  , Equatable , ObservableObject{
+  
     static func == (lhs: PatientMedicinesTime, rhs: PatientMedicinesTime) -> Bool {
         return lhs.id == rhs.id
     }
@@ -32,7 +33,7 @@ class PatientMedicinesTime: Identifiable  , Equatable , ObservableObject{
     }
 }
 
-class Time  : ObservableObject{
+class Time : ObservableObject{
     
     @Published var items = [PatientMedicinesTime]()
 
@@ -44,6 +45,45 @@ class Time  : ObservableObject{
         if let index = items.firstIndex(of: item) {
             items.remove(at: index)
         }
+    }
+}
+
+class Day  : ObservableObject{
+    
+    @Published var items = [
+            WeekDay(id: 1, name: "Sunday", selected: false),
+            WeekDay(id: 2, name: "Monday", selected: false),
+            WeekDay(id: 3, name: "Tuesday", selected: false),
+            WeekDay(id: 4, name: "Wednesday", selected: false),
+            WeekDay(id: 5, name: "Thursday", selected: false),
+            WeekDay(id: 6, name: "Friday", selected: false),
+            WeekDay(id: 7, name: "Saturday", selected: false),
+        ]
+
+    func add(item: WeekDay) {
+        items.append(item)
+    }
+
+    func remove(item: WeekDay) {
+        if let index = items.firstIndex(of: item) {
+            items.remove(at: index)
+        }
+    }
+}
+class WeekDay: Identifiable  , Equatable , ObservableObject{
+  
+    static func == (lhs: WeekDay, rhs: WeekDay) -> Bool {
+        return lhs.id == rhs.id
+    }
+     var id: Int
+    var name: String
+    
+    @Published var selected : Bool
+    
+    init(id : Int , name : String , selected : Bool) {
+        self.id = id
+        self.name = name
+        self.selected = selected
     }
 }
 
@@ -101,3 +141,9 @@ class Time  : ObservableObject{
 //    }
 //}
 //
+
+struct PatientMedicines_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+    }
+}

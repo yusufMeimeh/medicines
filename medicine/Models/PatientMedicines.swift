@@ -9,13 +9,22 @@
 import SwiftUI
 import Combine
 
-struct PatientMedicines: Codable, Equatable, Identifiable {
+struct PatientMedicines: Equatable, Identifiable {
+   
+    static func == (lhs: PatientMedicines, rhs: PatientMedicines) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     var id: UUID
     var patientID: UUID
-    var medicines: [UUID]
-    var dosePeriod: [String]
-    var times: Int
-    var totalTablets: Int
+    var medicine: UUID
+    var doseForm : String
+    var doseStrength : String
+    var expireDate : Date
+    var medicationMealPeriod : String
+    var days : Day
+    var Schedul : String
+    var times : Time
 }
 
 class PatientMedicinesTime: Identifiable  , Equatable , ObservableObject{

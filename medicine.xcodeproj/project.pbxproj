@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4D4C04026E653E62AA9678F6 /* Pods_medicine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE5AC8B18566A44F65745C21 /* Pods_medicine.framework */; };
+		B1484A0324F284B50016FC4E /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1484A0224F284B50016FC4E /* AppView.swift */; };
+		B1484A0524F28A2F0016FC4E /* MedicationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1484A0424F28A2F0016FC4E /* MedicationsView.swift */; };
+		B1484A0724F28E3C0016FC4E /* PatientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1484A0624F28E3C0016FC4E /* PatientsView.swift */; };
+		B1484A0924F29D0B0016FC4E /* PatientMedicineRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1484A0824F29D0B0016FC4E /* PatientMedicineRow.swift */; };
 		B1895EFE24EAB69400B3E8BC /* TimeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1895EFD24EAB69400B3E8BC /* TimeRow.swift */; };
 		B1DFB9AF24E56646000C09DA /* GeneralExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DFB9AE24E56646000C09DA /* GeneralExtentions.swift */; };
 		B1E47A4A24E3DA0800164B6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E47A4924E3DA0800164B6B /* AppDelegate.swift */; };
@@ -30,6 +34,10 @@
 
 /* Begin PBXFileReference section */
 		65BCBA48CC4AA64EB54ECB11 /* Pods-medicine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-medicine.release.xcconfig"; path = "Target Support Files/Pods-medicine/Pods-medicine.release.xcconfig"; sourceTree = "<group>"; };
+		B1484A0224F284B50016FC4E /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		B1484A0424F28A2F0016FC4E /* MedicationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationsView.swift; sourceTree = "<group>"; };
+		B1484A0624F28E3C0016FC4E /* PatientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientsView.swift; sourceTree = "<group>"; };
+		B1484A0824F29D0B0016FC4E /* PatientMedicineRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientMedicineRow.swift; sourceTree = "<group>"; };
 		B1895EFD24EAB69400B3E8BC /* TimeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRow.swift; sourceTree = "<group>"; };
 		B1DFB9AE24E56646000C09DA /* GeneralExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralExtentions.swift; sourceTree = "<group>"; };
 		B1E47A4624E3DA0800164B6B /* medicine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = medicine.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,13 +145,17 @@
 		B1E47A5E24E3DA2600164B6B /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				B1484A0224F284B50016FC4E /* AppView.swift */,
 				B1E47A6624E3E6A300164B6B /* HomeView.swift */,
+				B1484A0424F28A2F0016FC4E /* MedicationsView.swift */,
+				B1484A0624F28E3C0016FC4E /* PatientsView.swift */,
 				B1E47A6824E3E6C800164B6B /* AddPatientView.swift */,
 				B1E47A6A24E3E6DC00164B6B /* PatientDetailsView.swift */,
 				B1E47A6C24E3E6F500164B6B /* AddMedicine.swift */,
 				B1E47A6E24E3E70700164B6B /* MedicineDetailsView.swift */,
 				B1E47A7024E3E73600164B6B /* AddMedicineToPatientView.swift */,
 				B1895EFD24EAB69400B3E8BC /* TimeRow.swift */,
+				B1484A0824F29D0B0016FC4E /* PatientMedicineRow.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -282,10 +294,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1484A0924F29D0B0016FC4E /* PatientMedicineRow.swift in Sources */,
 				B1E47A6924E3E6C800164B6B /* AddPatientView.swift in Sources */,
+				B1484A0524F28A2F0016FC4E /* MedicationsView.swift in Sources */,
 				B1E47A4A24E3DA0800164B6B /* AppDelegate.swift in Sources */,
 				B1E47A6724E3E6A300164B6B /* HomeView.swift in Sources */,
 				B1895EFE24EAB69400B3E8BC /* TimeRow.swift in Sources */,
+				B1484A0324F284B50016FC4E /* AppView.swift in Sources */,
+				B1484A0724F28E3C0016FC4E /* PatientsView.swift in Sources */,
 				B1E47A6524E3DD0C00164B6B /* PatientMedicines.swift in Sources */,
 				B1E47A7624E406E000164B6B /* ViewExtentions.swift in Sources */,
 				B1E47A6124E3DCD300164B6B /* Patient.swift in Sources */,

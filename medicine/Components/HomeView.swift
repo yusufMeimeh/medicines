@@ -28,25 +28,6 @@ struct HomeView: View {
                             Text("Add New Patient").bold().foregroundColor(.green)
                         }.buttonStyle(PlainButtonStyle())
                     }
-                    
-                    Section(header: Text("Medicines").font(.headline)){
-                        
-                        if !self.appData.medicines.isEmpty{
-                            ForEach(self.appData.medicines) { item in
-                                NavigationLink(destination: MedicineDetailsView(medicine: item)){
-                                    Text(item.name)
-                                }
-                            }
-                        }
-                        
-                        Section{
-                            NavigationLink(destination: AddMedicine()){
-                                Text("Add New Medicine").bold().foregroundColor(.orange)
-                            }
-                        }
-                    }
-                    
-                    
                 }.navigationBarTitle("Home")
                     .listStyle(GroupedListStyle())
                 

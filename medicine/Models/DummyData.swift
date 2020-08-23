@@ -49,7 +49,10 @@ func generateMedicineExample() -> Medicine{
    return Medicine(id: UUID(), name: faker.commerce.productName(), purposes: purposes, description: faker.lorem.sentences())
 }
 
-
+func gneratePatientMedicine() -> PatientMedicines{
+    return PatientMedicines(id: UUID(), patientID: UUID(), medicine: UUID(), doseForm: "Liquied", doseStrength: "22", expireDate: Date(), medicationMealPeriod: "After Meal", days: Day(), Schedul: "EveryDay", times: Time())
+    
+}
 #endif
 
 

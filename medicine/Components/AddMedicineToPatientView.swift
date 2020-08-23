@@ -9,7 +9,9 @@
 import SwiftUI
 
 struct AddMedicineToPatientView: View {
+    
     @EnvironmentObject var appData : AppData
+    
     @State private var selectedMedcine = ""
     @State private var selectedMedcineType = 0
     @State private var selectedMedcineMealType = 0
@@ -21,7 +23,8 @@ struct AddMedicineToPatientView: View {
     @State private var count = 1
     @ObservedObject var medicineTimes = Time()
     @ObservedObject var days = Day()
-    
+    var patient : Patient
+
     static let medicineTypes = ["Liquid" , "Tablets" , "Capsules" , "Suppositories" , "Drops" , "Inhalers"]
     
     static let medicineTimeTypes = ["Before Meal" , "After Meal"]
@@ -148,6 +151,10 @@ struct AddMedicineToPatientView: View {
                 print(m.name)
             }
             
+            let object = PatientMedicines(id: UUID(), patientID: patient.id, medicine: self.selectedMedicineObject!.id, doseForm: Self.medicineTypes[selectedMedcineType], doseStrength: self.doseStrength, expireDate: expireDob, medicationMealPeriod: Self.medicineTimeTypes[selectedMedcineMealType], days: days, Schedul: Self.medicineTimePeriods[selectedMedcinePeriodType], times: medicineTimes)
+
+            appData.addPatientMedicine(item: object)
+            
         }else{
             self.showingAlert.toggle()
         }
@@ -160,7 +167,7 @@ struct AddMedicineToPatientView: View {
 struct AddMedicineToPatientView_Previews: PreviewProvider {
     static let appData = AppData()
     static var previews: some View {
-        AddMedicineToPatientView().environmentObject(appData)
+        AddMedicineToPatientView(patient: patientExample).environmentObject(appData)
     }
 }
 

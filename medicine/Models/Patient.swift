@@ -40,5 +40,14 @@ class AppData : ObservableObject{
             medicines.remove(at: index)
         }
     }
+
+    func addPatientMedicine(item : PatientMedicines) {
+        patientMedicines.append(item)
+    }
     
+    func removePatientMedicine(item : PatientMedicines) {
+        if let index = patientMedicines.firstIndex(of: item) {
+            patientMedicines.remove(at: index)
+        }
+    }
 }

@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct PatientDetailsView: View {
+    
     @EnvironmentObject var appData : AppData
     @State private var patientMedicines = [PatientMedicines]()
     @State private var medicines = [Medicine]()
@@ -36,18 +37,25 @@ struct PatientDetailsView: View {
                 }
             }
             
-            if !self.medicines.isEmpty{
+            if !self.patientMedicines.isEmpty{
                 Section(header : Text("Medicins")){
-                    ForEach(medicines) { item in
-                        NavigationLink(destination: MedicineDetailsView(medicine: item)){
-                            Text(item.name)
-                        }
+                    ForEach(patientMedicines) { item in
+                        PatientMedicineRow(object: item)
                     }
                 }
             }
+//            if !self.medicines.isEmpty{
+//                Section(header : Text("Medicins")){
+//                    ForEach(medicines) { item in
+//                        NavigationLink(destination: MedicineDetailsView(medicine: item)){
+//                            Text(item.name)
+//                        }
+//                    }
+//                }
+//            }
             
             Section{
-                NavigationLink(destination: AddMedicineToPatientView()){
+                NavigationLink(destination: AddMedicineToPatientView(patient: patient)){
                     Text("Assign New Medicine").bold().foregroundColor(.orange)
                 }
             }
@@ -68,17 +76,28 @@ struct PatientDetailsView: View {
     }
     
     private func getMedicines() -> [Medicine]{
-        self.patientMedicines = getPatientMedicines()
+        self.patientMedicines = self.appData.patientMedicines.filter({ (pm) -> Bool in
+            pm.patientID == patient.id
+        })//getPatientMedicines()
+        
         var array = [Medicine]()
-        for i in 0..<patientMedicines.count{
-            for j in 0..<patientMedicines[i].medicines.count{
-                if let medicine = appData.medicines.first(where: { (m) -> Bool in
-                    m.id == patientMedicines[i].medicines[j]
-                }){
-                    array.append(medicine)
-                }
+        for pm in patientMedicines {
+            if let m = self.appData.medicines.first(where: { (m) -> Bool in
+                m.id == pm.medicine
+            }){
+                array.append(m)
             }
         }
+
+//        for i in 0..<patientMedicines.count{
+//            for j in 0..<patientMedicines[i].medicines.count{
+//                if let medicine = appData.medicines.first(where: { (m) -> Bool in
+//                    m.id == patientMedicines[i].medicines[j]
+//                }){
+//                    array.append(medicine)
+//                }
+//            }
+//        }
         
         return array
     }

@@ -145,13 +145,11 @@ struct AddMedicineToPatientView: View {
                 print(m.count)
             }
             
-            days.items.filter({ (q) -> Bool in
+            let selectedDays: [WeekDay] = days.items.filter({ (q) -> Bool in
                 q.selected
-            }).forEach { (m) in
-                print(m.name)
-            }
+            })
             
-            let object = PatientMedicines(id: UUID(), patientID: patient.id, medicine: self.selectedMedicineObject!.id, doseForm: Self.medicineTypes[selectedMedcineType], doseStrength: self.doseStrength, expireDate: expireDob, medicationMealPeriod: Self.medicineTimeTypes[selectedMedcineMealType], days: days, Schedul: Self.medicineTimePeriods[selectedMedcinePeriodType], times: medicineTimes)
+            let object = PatientMedicines(id: UUID(), patientID: patient.id, medicine: self.selectedMedicineObject!.id, doseForm: Self.medicineTypes[selectedMedcineType], doseStrength: self.doseStrength, expireDate: expireDob, medicationMealPeriod: Self.medicineTimeTypes[selectedMedcineMealType], days: selectedDays, Schedul: Self.medicineTimePeriods[selectedMedcinePeriodType], times: medicineTimes.items)
 
             appData.addPatientMedicine(item: object)
             

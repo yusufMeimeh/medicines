@@ -50,7 +50,7 @@ func generateMedicineExample() -> Medicine{
 }
 
 func gneratePatientMedicine() -> PatientMedicines{
-    return PatientMedicines(id: UUID(), patientID: UUID(), medicine: UUID(), doseForm: "Liquied", doseStrength: "22", expireDate: Date(), medicationMealPeriod: "After Meal", days: Day(), Schedul: "EveryDay", times: Time())
+    return PatientMedicines(id: UUID(), patientID: UUID(), medicine: UUID(), doseForm: "Liquied", doseStrength: "22", expireDate: Date(), medicationMealPeriod: "After Meal", days: Day().items, Schedul: "EveryDay", times: Time().items)
     
 }
 #endif

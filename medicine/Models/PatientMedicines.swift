@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 struct PatientMedicines: Equatable, Identifiable {
-   
+    
     static func == (lhs: PatientMedicines, rhs: PatientMedicines) -> Bool {
         return lhs.id == rhs.id
     }
@@ -22,17 +22,17 @@ struct PatientMedicines: Equatable, Identifiable {
     var doseStrength : String
     var expireDate : Date
     var medicationMealPeriod : String
-    var days : Day
+    var days : [WeekDay]?
     var Schedul : String
-    var times : Time
+    var times : [PatientMedicinesTime]?
 }
 
 class PatientMedicinesTime: Identifiable  , Equatable , ObservableObject{
-  
+    
     static func == (lhs: PatientMedicinesTime, rhs: PatientMedicinesTime) -> Bool {
         return lhs.id == rhs.id
     }
-     var id: UUID = UUID()
+    var id: UUID = UUID()
     @Published  var time: Date
     @Published var count: Int
     
@@ -45,11 +45,11 @@ class PatientMedicinesTime: Identifiable  , Equatable , ObservableObject{
 class Time : ObservableObject{
     
     @Published var items = [PatientMedicinesTime]()
-
+    
     func add(item: PatientMedicinesTime) {
         items.append(item)
     }
-
+    
     func remove(item: PatientMedicinesTime) {
         if let index = items.firstIndex(of: item) {
             items.remove(at: index)
@@ -60,19 +60,19 @@ class Time : ObservableObject{
 class Day  : ObservableObject{
     
     @Published var items = [
-            WeekDay(id: 1, name: "Sunday", selected: false),
-            WeekDay(id: 2, name: "Monday", selected: false),
-            WeekDay(id: 3, name: "Tuesday", selected: false),
-            WeekDay(id: 4, name: "Wednesday", selected: false),
-            WeekDay(id: 5, name: "Thursday", selected: false),
-            WeekDay(id: 6, name: "Friday", selected: false),
-            WeekDay(id: 7, name: "Saturday", selected: false),
-        ]
-
+        WeekDay(id: 1, name: "Sunday", selected: false),
+        WeekDay(id: 2, name: "Monday", selected: false),
+        WeekDay(id: 3, name: "Tuesday", selected: false),
+        WeekDay(id: 4, name: "Wednesday", selected: false),
+        WeekDay(id: 5, name: "Thursday", selected: false),
+        WeekDay(id: 6, name: "Friday", selected: false),
+        WeekDay(id: 7, name: "Saturday", selected: false),
+    ]
+    
     func add(item: WeekDay) {
         items.append(item)
     }
-
+    
     func remove(item: WeekDay) {
         if let index = items.firstIndex(of: item) {
             items.remove(at: index)
@@ -80,11 +80,11 @@ class Day  : ObservableObject{
     }
 }
 class WeekDay: Identifiable  , Equatable , ObservableObject{
-  
+    
     static func == (lhs: WeekDay, rhs: WeekDay) -> Bool {
         return lhs.id == rhs.id
     }
-     var id: Int
+    var id: Int
     var name: String
     
     @Published var selected : Bool

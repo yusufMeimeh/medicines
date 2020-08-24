@@ -12,6 +12,7 @@
 		B1484A0524F28A2F0016FC4E /* MedicationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1484A0424F28A2F0016FC4E /* MedicationsView.swift */; };
 		B1484A0724F28E3C0016FC4E /* PatientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1484A0624F28E3C0016FC4E /* PatientsView.swift */; };
 		B1484A0924F29D0B0016FC4E /* PatientMedicineRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1484A0824F29D0B0016FC4E /* PatientMedicineRow.swift */; };
+		B16811BB24F3E87100DBB453 /* TodayRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16811BA24F3E87100DBB453 /* TodayRow.swift */; };
 		B1895EFE24EAB69400B3E8BC /* TimeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1895EFD24EAB69400B3E8BC /* TimeRow.swift */; };
 		B1DFB9AF24E56646000C09DA /* GeneralExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DFB9AE24E56646000C09DA /* GeneralExtentions.swift */; };
 		B1E47A4A24E3DA0800164B6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E47A4924E3DA0800164B6B /* AppDelegate.swift */; };
@@ -38,6 +39,7 @@
 		B1484A0424F28A2F0016FC4E /* MedicationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationsView.swift; sourceTree = "<group>"; };
 		B1484A0624F28E3C0016FC4E /* PatientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientsView.swift; sourceTree = "<group>"; };
 		B1484A0824F29D0B0016FC4E /* PatientMedicineRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientMedicineRow.swift; sourceTree = "<group>"; };
+		B16811BA24F3E87100DBB453 /* TodayRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayRow.swift; sourceTree = "<group>"; };
 		B1895EFD24EAB69400B3E8BC /* TimeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRow.swift; sourceTree = "<group>"; };
 		B1DFB9AE24E56646000C09DA /* GeneralExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralExtentions.swift; sourceTree = "<group>"; };
 		B1E47A4624E3DA0800164B6B /* medicine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = medicine.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,6 +158,7 @@
 				B1E47A7024E3E73600164B6B /* AddMedicineToPatientView.swift */,
 				B1895EFD24EAB69400B3E8BC /* TimeRow.swift */,
 				B1484A0824F29D0B0016FC4E /* PatientMedicineRow.swift */,
+				B16811BA24F3E87100DBB453 /* TodayRow.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				B1484A0724F28E3C0016FC4E /* PatientsView.swift in Sources */,
 				B1E47A6524E3DD0C00164B6B /* PatientMedicines.swift in Sources */,
 				B1E47A7624E406E000164B6B /* ViewExtentions.swift in Sources */,
+				B16811BB24F3E87100DBB453 /* TodayRow.swift in Sources */,
 				B1E47A6124E3DCD300164B6B /* Patient.swift in Sources */,
 				B1E47A6324E3DCE000164B6B /* Medicine.swift in Sources */,
 				B1E47A6B24E3E6DC00164B6B /* PatientDetailsView.swift in Sources */,
